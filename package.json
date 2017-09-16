@@ -2,6 +2,7 @@
   "name": "react-redux",
   "version": "1.0.0",
   "main": "index.js",
+  "repository": "git@github.com:eugenekgn/react-redux.git",
   "license": "MIT",
   "scripts": {
     "server": "nodemon --watch server --exec babel-node -- server/index.js"
