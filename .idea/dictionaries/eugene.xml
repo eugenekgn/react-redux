@@ -2,6 +2,9 @@
   <dictionary name="eugene">
     <words>
       <w>devtools</w>
+      <w>jumbotron</w>
+      <w>navbar</w>
+      <w>signup</w>
     </words>
   </dictionary>
 </component>
