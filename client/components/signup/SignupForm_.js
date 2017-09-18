@@ -3,7 +3,7 @@ import timezones from '../../data/timezones';
 import _ from 'lodash';
 
 
-class SignUpForm extends Component {
+class SignupForm extends Component {
 
   constructor(props) {
     super(props);
@@ -94,8 +94,8 @@ class SignUpForm extends Component {
   }
 }
 
-SignUpForm.propTypes = {
+SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired
 };
 
-export default SignUpForm;
+export default SignupForm;
