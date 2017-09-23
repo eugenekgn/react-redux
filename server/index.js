@@ -5,8 +5,16 @@ import webpack from 'webpack';
 import webpackMiddleware from 'webpack-dev-middleware';
 import webpackConfig from '../webpack.config.dev.js';
 import webpackHotMiddleware from 'webpack-hot-middleware';
+import bodyParser from 'body-parser';
+
 
 const app = express();
+app.use(bodyParser.json());
+
+
+import users from './routes/users';
+
+app.use('/api/users', users);
 
 const compiler = webpack(webpackConfig);
 
