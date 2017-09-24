@@ -29,11 +29,6 @@ export const validateInput = data => {
 		errors.passwordConfirmation = 'Passwords must match';
 	}
 
-
-	if (Validator.isNull(data.timezone)) {
-		errors.timezone = 'This field is required';
-	}
-
 	return {
 		errors,
 		isValid: isEmpty(errors)

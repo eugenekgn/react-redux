@@ -51,6 +51,10 @@ class SignupForm extends Component {
         isLoading: true
       });
       this.props.userSignupRequest(this.state).then(() => {
+        this.props.addFlashMessage({
+          type: 'success',
+          text: 'You have signed up successfully. Welcome!'
+        });
         browserHistory.push('/');
       }, (err) =>
           this.setState({
@@ -58,6 +62,8 @@ class SignupForm extends Component {
             isLoading: false
           })
       );
+    } else {
+      console.log('validation failure')
     }
   }
 
@@ -127,7 +133,8 @@ class SignupForm extends Component {
 }
 
 SignupForm.propTypes = {
-  userSignupRequest: React.PropTypes.func.isRequired
+  userSignupRequest: React.PropTypes.func.isRequired,
+  addFlashMessage: React.PropTypes.func.isRequired,
 };
 
 export default SignupForm;
