@@ -21,4 +21,6 @@ SignupPage.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired
 };
 
+
+//Todo: fix this
 export default connect(null, { userSignupRequest })(SignupPage);
