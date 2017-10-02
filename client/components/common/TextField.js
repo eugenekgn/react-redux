@@ -1,7 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 
-const TextField = ({ field, value, label, error, type, onChange }) => {
+const TextField = ({ field, value, label, error, type, onChange, checkUserExists }) => {
 	return (
 		<div className={classnames("form-group", { 'has-error': error })}>
 			<label
@@ -10,6 +10,7 @@ const TextField = ({ field, value, label, error, type, onChange }) => {
 			<input
 				className="form-control"
 				type={type}
+				onBlur={checkUserExists}
 				onChange={onChange}
 				value={value}
 				name={field}
@@ -25,7 +26,8 @@ TextField.propTypes = {
 	label: React.PropTypes.string.isRequired,
 	error: React.PropTypes.string,
 	type: React.PropTypes.string.isRequired,
-	onChange: React.PropTypes.func.isRequired
+	onChange: React.PropTypes.func.isRequired,
+	checkUserExists: React.PropTypes.func
 };
 
 TextField.defaultProps = {

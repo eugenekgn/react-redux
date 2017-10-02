@@ -18,16 +18,44 @@ class SignupForm extends Component {
       passwordConfirmation: '',
       timezone: '',
       errors: {},
-      isLoading: false
+      isLoading: false,
+      invalid: false
+
     };
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.isValid = this.isValid.bind(this);
+    this.checkUserExists = this.checkUserExists.bind(this);
   }
 
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
+  }
+
+  checkUserExists(e) {
+    const field = e.target.name;
+    const value = e.target.value;
+
+    if (value !== '') {
+      this.props.isUserExists(value).then(res => {
+        let errors = this.state.errors;
+        let invalid;
+        if (res.data.user) {
+          errors[field] = `There is user with such ${field}`;
+          invalid = true;
+        } else {
+          errors[field] = '';
+          invalid = false;
+        }
+
+        this.setState({
+          errors,
+          invalid
+        })
+
+      })
+    }
   }
 
   isValid() {
@@ -82,6 +110,7 @@ class SignupForm extends Component {
           error={errors.username}
           label="Username"
           onChange={this.onChange}
+          checkUserExists={this.checkUserExists}
           value={this.state.username}
           field="username"
         />
@@ -90,6 +119,7 @@ class SignupForm extends Component {
           error={errors.email}
           label="Email"
           onChange={this.onChange}
+          checkUserExists={this.checkUserExists}
           value={this.state.email}
           field="email"
         />
@@ -123,7 +153,7 @@ class SignupForm extends Component {
           </select>
         </div>
         <div className="form-group">
-          <button className="btn btn-primary btn-large" disabled={this.state.isLoading}>
+          <button className="btn btn-primary btn-large" disabled={this.state.isLoading | this.state.invalid}>
             Sign Up
           </button>
         </div>
@@ -135,6 +165,7 @@ class SignupForm extends Component {
 SignupForm.propTypes = {
   userSignupRequest: React.PropTypes.func.isRequired,
   addFlashMessage: React.PropTypes.func.isRequired,
+  isUserExists: React.PropTypes.func
 };
 
 export default SignupForm;
