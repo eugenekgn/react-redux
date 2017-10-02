@@ -5,7 +5,7 @@
   "repository": "git@github.com:eugenekgn/react-redux.git",
   "license": "MIT",
   "scripts": {
-    "server": "nodemon --watch server --exec babel-node -- server/index.js"
+    "start": "nodemon --watch server --exec babel-node -- server/index.js"
   },
   "dependencies": {
     "axios": "0.13.1",
